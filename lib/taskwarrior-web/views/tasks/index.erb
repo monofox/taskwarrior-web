@@ -26,6 +26,7 @@
           <th data-sort-map='{"H": 0, "M": 1, "": 2, "L": 3}'>Priority</th>
           <% if can_edit %><th class="no-sort">Operations</th><% end %>
           <th>Created</th>
+          <th>Started</th>
         </tr>
       </thead>
       <tbody>
@@ -61,6 +62,7 @@
             <td><%= task.priority unless task.priority.nil? %></td>
             <% if can_edit %><td><%= crud_links(task) %></td><% end %>
             <td><%= format_date(task.entry) %></td>
+            <td><%= if task.start then format_time_diff(task.start) else "" end %></td>
           </tr>
         <% end %>
       </tbody>

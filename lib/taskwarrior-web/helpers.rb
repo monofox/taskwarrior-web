@@ -7,6 +7,14 @@ module TaskwarriorWeb::App::Helpers
     Time.parse(timestamp).localtime.strftime(format)
   end
 
+  def format_time_diff(timestamp)
+    format = TaskwarriorWeb::Config.dateformat || '%-m/%-d/%Y'
+    format = '%-d/%-b/%Y %H:%M:%S'
+    #Time.parse(timestamp).localtime.strftime(format)
+    time_diff = Time.now - Time.parse(timestamp).localtime
+    Time.at(time_diff.round.abs).utc.strftime "%H:%M:%S ago"
+  end
+
   def format_tags(tags)
     tags.join(', ')
   end
