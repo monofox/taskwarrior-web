@@ -11,6 +11,8 @@ module TaskwarriorWeb::CommandBuilder::Base
     :annotate => ':id annotate',
     :denotate => ':id denotate',
     :projects => '_projects',
+    :start => ':id start',
+    :stop => ':id stop',
     :tags => '_tags'
   }    
 

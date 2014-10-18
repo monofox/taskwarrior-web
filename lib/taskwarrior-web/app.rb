@@ -154,6 +154,8 @@ class TaskwarriorWeb::App < Sinatra::Base
   get('/ajax/projects/?') { TaskwarriorWeb::Command.new(:projects).run.split("\n").to_json }
   get('/ajax/count/?') { task_count }
   post('/ajax/task-complete/:id/?') { TaskwarriorWeb::Command.new(:complete, params[:id]).run }
+  post('/ajax/task-start/:id/?') { TaskwarriorWeb::Command.new(:start, params[:id]).run }
+  post('/ajax/task-stop/:id/?') { TaskwarriorWeb::Command.new(:stop, params[:id]).run }
   get('/ajax/badge/?') { badge_count }
 
   # Error handling

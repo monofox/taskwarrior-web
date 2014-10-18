@@ -72,6 +72,12 @@ module TaskwarriorWeb::App::Helpers
     string << %(<a href="/tasks/#{task.uuid}?destination=#{ERB::Util.u(request.path_info)}"><i class="icon-pencil"></i></a>)
     string << %(&nbsp;|&nbsp;)
     string << %(<a href="/tasks/#{task.uuid}?destination=#{ERB::Util.u(request.path_info)}" data-method="DELETE" data-confirm="Are you sure you want to delete this task?"><i class="icon-trash"></i></a>)
+    string << %(&nbsp;|&nbsp;)
+    if task.start
+      string << %(<i class="icon-pause start-stop" data-task-id="#{task.uuid}" data-action="stop" style="cursor:pointer"></i>)
+    else
+      string << %(<i class="icon-play start-stop" data-task-id="#{task.uuid}" data-action="start" style="cursor:pointer"></i>)
+    end
     string << %(</span>)
     string
   end

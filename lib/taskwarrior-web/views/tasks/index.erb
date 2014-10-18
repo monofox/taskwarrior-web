@@ -10,6 +10,7 @@
     <table class="table table-striped table-hover table-sortable">
       <thead>
         <tr>
+          <th>Index</th>
           <% if params[:status] == 'pending' %><th class="no-sort"></th><% end %>
           <th>Description</th>
           <th>Project</th>
@@ -23,12 +24,14 @@
           %>
           <th>Tags</th>
           <th data-sort-map='{"H": 0, "M": 1, "": 2, "L": 3}'>Priority</th>
-          <% if can_edit %><th class="no-sort"></th><% end %>
+          <% if can_edit %><th class="no-sort">Operations</th><% end %>
+          <th>Created</th>
         </tr>
       </thead>
       <tbody>
-        <% @tasks.each do |task| %>
+        <% @tasks.each_with_index do |task, index| %>
           <tr<%= %{ class="#{colorize_date(task.due)}"} if task.active? %>>
+            <td><%= (index+1).to_s + "." %></td>
             <% if params[:status] == 'pending' %>
               <td><input type="checkbox" class="complete" data-task-id="<%= task.uuid %>" /></td>
             <% end %>
@@ -57,6 +60,7 @@
             <td><%= format_tags(task.tags) unless task.tags.nil? %></td>
             <td><%= task.priority unless task.priority.nil? %></td>
             <% if can_edit %><td><%= crud_links(task) %></td><% end %>
+            <td><%= format_date(task.entry) %></td>
           </tr>
         <% end %>
       </tbody>
