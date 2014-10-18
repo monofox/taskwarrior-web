@@ -3,6 +3,7 @@ require 'active_support/core_ext/date/calculations'
 module TaskwarriorWeb::App::Helpers
   def format_date(timestamp)
     format = TaskwarriorWeb::Config.dateformat || '%-m/%-d/%Y'
+    format = '%-d/%-b/%Y'
     Time.parse(timestamp).localtime.strftime(format)
   end
 
