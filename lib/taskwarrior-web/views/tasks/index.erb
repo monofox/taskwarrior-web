@@ -27,6 +27,7 @@
           <% if can_edit %><th class="no-sort">Operations</th><% end %>
           <th>Created</th>
           <th>Started</th>
+          <th>Urgency</th>
         </tr>
       </thead>
       <tbody>
@@ -63,6 +64,7 @@
             <% if can_edit %><td><%= crud_links(task) %></td><% end %>
             <td><%= format_date(task.entry) %></td>
             <td><%= if task.start then format_time_diff(task.start) else "" end %></td>
+            <td><%= task.urgency %></td>
           </tr>
         <% end %>
       </tbody>
