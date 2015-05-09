@@ -3,6 +3,11 @@
     <a href="/" class="brand">TaskwarriorWeb</a>
     <%= render_navigation :level => 1 %>
     <ul class="nav pull-right">
+      <% if @has_taskd && @current_page !~ %r(^/tasks/new/?) %><li>
+	<a href="/ajax/sync" class="sync-tasks">
+          <i class="icon-refresh" title="Synchronize with Taskserver"></i>
+        </a>
+      </li><% end %>
       <li<% if @current_page =~ %r(^/tasks/new/?) %> class="active"<% end %>>
         <a href="/tasks/new?destination=<%= ERB::Util.u(request.path_info) %>">
           <i class="icon-plus"></i>&nbsp;Add a Task

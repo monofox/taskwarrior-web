@@ -217,6 +217,13 @@ describe TaskwarriorWeb::App do
     end
   end
 
+  describe 'GET /ajax/sync' do
+    it 'triggers synchronization with taskserver' do
+      get '/ajax/sync'
+      last_response.should be_ok
+    end
+  end
+
   describe 'POST /ajax/task-complete/:id' do
     it 'should mark the given task as complete' do
       command = TaskwarriorWeb::Command.new(:complete, 15)

@@ -13,7 +13,8 @@ module TaskwarriorWeb::CommandBuilder::Base
     :projects => '_projects',
     :start => ':id start',
     :stop => ':id stop',
-    :tags => '_tags'
+    :tags => '_tags',
+    :sync => 'sync'
   }    
 
   def build

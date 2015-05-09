@@ -136,6 +136,11 @@ module TaskwarriorWeb
       end
     end
 
+    # sync all tasks.
+    def self.sync
+      command.new(:sync, nil)
+    end
+
   end
 
   ###########################################

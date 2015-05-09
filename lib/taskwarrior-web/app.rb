@@ -28,6 +28,7 @@ class TaskwarriorWeb::App < Sinatra::Base
   before do
     @current_page = request.path_info
     @can_edit = TaskwarriorWeb::Config.supports? :editing
+    @has_taskd = TaskwarriorWeb::Config.supports? :taskd
     protected! if TaskwarriorWeb::Config.property('task-web.user')
   end
 
@@ -157,6 +158,10 @@ class TaskwarriorWeb::App < Sinatra::Base
   post('/ajax/task-start/:id/?') { TaskwarriorWeb::Command.new(:start, params[:id]).run }
   post('/ajax/task-stop/:id/?') { TaskwarriorWeb::Command.new(:stop, params[:id]).run }
   get('/ajax/badge/?') { badge_count }
+  get '/ajax/sync/?' do
+    not_found unless TaskwarriorWeb::Config.supports?(:taskd)
+    TaskwarriorWeb::Command.new(:sync, nil).run
+  end
 
   # Error handling
   not_found do

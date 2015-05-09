@@ -67,6 +67,7 @@ module TaskwarriorWeb::Config
     case feature.to_sym
       when :editing then self.version.major > 1
       when :_show then self.version >= '2.2.0'
+      when :taskd then self.store['taskd.server'] && self.store['taskd.server'].length > 0
       else false
     end
   end
